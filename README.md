@@ -18,3 +18,5 @@
 * Links úteis:
     - https://agenciadevalor.notion.site/agenciadevalor/C-digo-Aberto-Temporada-2-7d7234d105e846a8926cf63748a4b62c
     - https://youtu.be/llgb7F_VqMI?si=OOR0PVlXUT0GRMHY
+    - https://tailwindcss.com
+    
