@@ -6,7 +6,10 @@
     - PHP
     - Node
     - Vue
-    - Laravel + Jetstream
+    - Laravel
+    - Jetstream
+    - Tailwind CSS
+    - Maria DB
 
 * Executar aplicação:
     - Iniciar http server no terminal dentro da pasta do projeto: php artisan serve
