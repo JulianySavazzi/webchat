@@ -21,6 +21,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     <div class="w-3/12 bg-gray-500 bg-opacity-25 border-r border-gray-300
                     overflow-y-scroll">
                         <ul>
+
                             <li class="p-6 text-lg text-gray-700 leading-7
                             font-semibold border-b border-gray-300
                             hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
@@ -78,6 +79,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
                         <!--  messages -->
                             <div class="w-full p-6 flex flex-col overflow-y-scroll">
+
                                 <div class="w-full mb-3 text-right">
                                     <p class="inline-block p-2 rounded-md messageFromMe"
                                     style="max-width: 75%;">
@@ -154,6 +156,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                                             13/01/2023 19:40
                                     </span>
                                 </div>
+
                             </div>
 
                             <!-- form -->
@@ -178,6 +181,23 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         </div>
     </AppLayout>
 </template>
+
+<script>
+    export default {
+        data(){
+            return {
+                users: []
+            }
+        },
+
+        mounted() {
+            //essa funçao eh executada quando o componente eh montado
+            axios.get('api/users').then(response => {
+                console.log(response);
+            });
+        }
+    }
+</script>
 
 <style>
     .messageFromMe{
