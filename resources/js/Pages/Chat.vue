@@ -12,65 +12,32 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex"
+                <div class="bg-white overflow-hidden
+                shadow-xl sm:rounded-lg flex"
                 style="min-height: 400px; max-height: 400px;">
                     <!-- componente do chat -->
                     <!-- menu e form para enviar e receber mensagens -->
 
                     <!-- list users -->
-                    <div class="w-3/12 bg-gray-500 bg-opacity-25 border-r border-gray-300
+                    <div class="w-3/12 bg-gray-500 bg-opacity-25
+                    border-r border-gray-300
                     overflow-y-scroll">
                         <ul>
 
-                            <li class="p-6 text-lg text-gray-700 leading-7
+                            <li v-for="user in users" :key="user.id"
+                            class="p-6 text-lg text-gray-700 leading-7
                             font-semibold border-b border-gray-300
                             hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Juliany
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-700 leading-7
-                            font-semibold border-b border-gray-300
-                            hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Juliana
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-700 leading-7
-                            font-semibold border-b border-gray-300
-                            hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Matheus
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-700 leading-7
-                            font-semibold border-b border-gray-300
-                            hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Bruno
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-700 leading-7
-                            font-semibold border-b border-gray-300
-                            hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Lury
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
-                            <li class="p-6 text-lg text-gray-700 leading-7
-                            font-semibold border-b border-gray-300
-                            hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
-                                <p class="flex items-center">
-                                    Carol
-                                    <span class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
-                                </p>
-                            </li>
 
+                                <p class="flex items-center">
+                                    {{ user.name }}
+                                    <span class="ml-2 w-2 h-2
+                                    bg-blue-500 rounded-full">
+                                    </span>
+                                </p>
+
+                            </li>
+                            
                         </ul>
                     </div>
 
@@ -193,7 +160,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         mounted() {
             //essa funçao eh executada quando o componente eh montado
             axios.get('api/users').then(response => {
-                console.log(response);
+                this.users = response.data.users
+                console.log(this.users);
             });
         }
     }
