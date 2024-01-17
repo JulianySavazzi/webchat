@@ -49,13 +49,15 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
                         <!--  messages -->
                             <div class="w-full p-6 flex flex-col overflow-y-scroll">
-                                <div class="w-full mb-3 text-right">
+
+                                <div v-for="message in messages" :key="message.id"
+                                class="w-full mb-3 text-right">
                                     <p class="inline-block p-2 rounded-md messageFromMe"
                                     style="max-width: 75%;">
-                                        Olá
+                                        {{message.content}}
                                     </p>
                                     <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
+                                            {{message.created_at}}
                                     </span>
                                 </div>
 
@@ -110,7 +112,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         methods:{
             loadMessages: function(user) {
                     axios.get(`api/messages/${user}`).then(response => {
-                        console.log(response);
+                        this.messages = response.data.messages
+                        console.log(this.messages);
                     });
                 }
         },
