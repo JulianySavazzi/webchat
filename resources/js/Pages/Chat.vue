@@ -11,7 +11,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         </template>
 
         <div class="py-12">
+
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
                 <div class="bg-white overflow-hidden
                 shadow-xl sm:rounded-lg flex"
                 style="min-height: 400px; max-height: 400px;">
@@ -25,6 +27,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                         <ul>
 
                             <li v-for="user in users" :key="user.id"
+                            @click="() => {loadMessages(user.id)}"
                             class="p-6 text-lg text-gray-700 leading-7
                             font-semibold border-b border-gray-300
                             hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
@@ -46,7 +49,6 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
                         <!--  messages -->
                             <div class="w-full p-6 flex flex-col overflow-y-scroll">
-
                                 <div class="w-full mb-3 text-right">
                                     <p class="inline-block p-2 rounded-md messageFromMe"
                                     style="max-width: 75%;">
@@ -66,65 +68,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                                             13/01/2023 19:40
                                     </span>
                                 </div>
-                                <div class="w-full mb-3 text-right">
-                                    <p class="inline-block p-2 rounded-md messageFromMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-
-                                <div class="w-full mb-3 text-left">
-                                    <p class="inline-block p-2 rounded-md messageToMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-                                <div class="w-full mb-3 text-right">
-                                    <p class="inline-block p-2 rounded-md messageFromMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-
-                                <div class="w-full mb-3 text-left">
-                                    <p class="inline-block p-2 rounded-md messageToMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-                                <div class="w-full mb-3 text-right">
-                                    <p class="inline-block p-2 rounded-md messageFromMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-
-                                <div class="w-full mb-3 text-left">
-                                    <p class="inline-block p-2 rounded-md messageToMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
-
                             </div>
+
+
 
                             <!-- form -->
                             <div class="w-full bg-blue-200 bg-opacity-25
@@ -143,8 +89,11 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                             </div>
 
                     </div>
+
                 </div>
+
             </div>
+
         </div>
     </AppLayout>
 </template>
@@ -153,8 +102,17 @@ import AppLayout from '@/Layouts/AppLayout.vue';
     export default {
         data(){
             return {
-                users: []
+                users: [],
+                messages: []
             }
+        },
+
+        methods:{
+            loadMessages: function(user) {
+                    axios.get(`api/messages/${user}`).then(response => {
+                        console.log(response);
+                    });
+                }
         },
 
         mounted() {
@@ -163,6 +121,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 this.users = response.data.users
                 console.log(this.users);
             });
+
         }
     }
 </script>
