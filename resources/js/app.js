@@ -39,8 +39,8 @@ createInertiaApp({
             }
         }
 
-        appVue.mount(el)
-        //return appVue.mount(el)
+        //appVue.mount(el)
+        return appVue.mount(el)
     },
     progress: {
         color: '#4B5563',
