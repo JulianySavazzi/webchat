@@ -51,25 +51,21 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                             <div class="w-full p-6 flex flex-col overflow-y-scroll">
 
                                 <div v-for="message in messages" :key="message.id"
-                                class="w-full mb-3 text-right">
-                                    <p class="inline-block p-2 rounded-md messageFromMe"
+                                :class="(message.from == $page.props.auth.user.id) ? 'text-right' : 'text-left' "
+                                class="w-full mb-3 ">
+                                    <p
+                                    :class="(message.from == $page.props.auth.user.id) ? 'messageFromMe' : 'messageToMe' "
+                                    class="inline-block p-2 rounded-md"
                                     style="max-width: 75%;">
                                         {{message.content}}
                                     </p>
                                     <span class="block mt-1 text-xs text-gray-500">
-                                            {{message.created_at}}
+                                           <!--  {{message.created_at}} --->
+                                        {{$filters.formatDate(message.created_at)}}
+
                                     </span>
                                 </div>
 
-                                <div class="w-full mb-3 text-left">
-                                    <p class="inline-block p-2 rounded-md messageToMe"
-                                    style="max-width: 75%;">
-                                        Olá
-                                    </p>
-                                    <span class="block mt-1 text-xs text-gray-500">
-                                            13/01/2023 19:40
-                                    </span>
-                                </div>
                             </div>
 
 
