@@ -26,8 +26,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                     overflow-y-scroll">
                         <ul>
 
-                            <li v-for="user in users" :key="user.id"
+                            <li v-for="user in users"
+                            :key="user.id"
                             @click="() => {loadMessages(user.id)}"
+                            :class="(userActive == user.id) ? 'bg-indigo-200 bg-opacity-50' : ''"
                             class="p-6 text-lg text-gray-700 leading-7
                             font-semibold border-b border-gray-300
                             hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
@@ -50,7 +52,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                         <!--  messages -->
                             <div class="w-full p-6 flex flex-col overflow-y-scroll">
 
-                                <div v-for="message in messages" :key="message.id"
+                                <div v-for="message in messages"
+                                :key="message.id"
                                 :class="(message.from == $page.props.auth.user.id) ? 'text-right' : 'text-left' "
                                 class="w-full mb-3 ">
                                     <p
@@ -101,7 +104,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
         data(){
             return {
                 users: [],
-                messages: []
+                messages: [],
+                userActive: ''
             }
         },
 
@@ -109,7 +113,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             loadMessages: function(user) {
                     axios.get(`api/messages/${user}`).then(response => {
                         this.messages = response.data.messages
-                        console.log(this.messages);
+                        this.userActive = user
+                        console.log(this.userActive);
                     });
                 }
         },
