@@ -55,7 +55,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                                 <div v-for="message in messages"
                                 :key="message.id"
                                 :class="(message.from == $page.props.auth.user.id) ? 'text-right' : 'text-left' "
-                                class="w-full mb-3 ">
+                                class="w-full mb-3 scroll-message">
                                     <p
                                     :class="(message.from == $page.props.auth.user.id) ? 'messageFromMe' : 'messageToMe' "
                                     class="inline-block p-2 rounded-md"
@@ -77,10 +77,10 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                             <div v-if="userActive"
                             class="w-full bg-blue-200 bg-opacity-25
                                p-6 border-t border-blue-200">
-                              <form>
+                              <form v-on:submit.prevent="sendMessage">
                                     <div class="flex rounded-md
                                     overflow-hidden border border-blue-200">
-                                        <input type="text" class="flex-1 px-4 py-2 text-sm
+                                        <input v-model="message" type="text" class="flex-1 px-4 py-2 text-sm
                                         focus:outline-none">
                                         <button type="submit" class="bg-indigo-500
                                         hover:bg-indigo-600 text-white px-4 py-2">
@@ -106,18 +106,49 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             return {
                 users: [],
                 messages: [],
-                userActive: null
+                userActive: null,
+                message: ''
             }
         },
 
         methods:{
-            loadMessages: function(user) {
-                    axios.get(`api/messages/${user}`).then(response => {
+            scrollToBottom: function(){
+                if(this.messages.length){
+                    document.querySelectorAll('.scroll-message:last-child')[0].scrollIntoView()
+                }
+            },
+            loadMessages: async function(user) {
+                    await axios.get(`api/messages/${user}`).then(response => {
                         this.messages = response.data.messages
                         this.userActive = user
                         console.log(this.userActive);
                     });
-                }
+
+                    this.scrollToBottom()
+                },
+
+            sendMessage: async function (){
+                //recebe o valor da mensagem pelo v-model="message"
+                await axios.post('api/messages/store', {
+                    'content': this.message,
+                    'to': this.userActive
+                }).then(response => {
+
+                    this.messages.push({
+                        'from': '1',
+                        'to': this.userActive,
+                        'content': this.message,
+                        'created_at': new Date().toISOString(),
+                        'updated_at': new Date().toISOString()
+                    })
+
+                    this.message=""
+                    //console.log(response)
+                })
+
+                this.scrollToBottom()
+                //console.log(this.message)
+            }
         },
 
         mounted() {

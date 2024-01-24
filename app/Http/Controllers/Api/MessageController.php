@@ -52,7 +52,12 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message = new Message();
+        $message->from = Auth::user()->id;
+        $message->to = $request->to;
+        $message->content = filter_var($request->content, FILTER_SANITIZE_SPECIAL_CHARS);
+        $message->save();
+        //return response()->json("{$message->content}");
     }
 
     /**
