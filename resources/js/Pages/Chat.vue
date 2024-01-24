@@ -29,7 +29,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                             <li v-for="user in users"
                             :key="user.id"
                             @click="() => {loadMessages(user.id)}"
-                            :class="(userActive == user.id) ? 'bg-indigo-200 bg-opacity-50' : ''"
+                            :class="(userActive != null && userActive == user.id) ? 'bg-indigo-200 bg-opacity-50' : ''"
                             class="p-6 text-lg text-gray-700 leading-7
                             font-semibold border-b border-gray-300
                             hover:bg-gray-100 hover:bg-opacity-50 hover:cursor-pointer">
@@ -74,7 +74,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
 
                             <!-- form -->
-                            <div class="w-full bg-blue-200 bg-opacity-25
+                            <div v-if="userActive"
+                            class="w-full bg-blue-200 bg-opacity-25
                                p-6 border-t border-blue-200">
                               <form>
                                     <div class="flex rounded-md
@@ -105,7 +106,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             return {
                 users: [],
                 messages: [],
-                userActive: ''
+                userActive: null
             }
         },
 
