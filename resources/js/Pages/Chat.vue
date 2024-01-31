@@ -160,10 +160,8 @@ import store from '@/store.js';
 
         mounted() {
             //essa funçao eh executada quando o componente eh montado
-
             //ver usuario logado
-            console.log(this.user)
-
+            //console.log(this.user)
             axios.get('api/users').then(response => {
                 this.users = response.data.users
                 //console.log(this.users);

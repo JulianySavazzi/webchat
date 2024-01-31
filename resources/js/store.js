@@ -4,7 +4,6 @@ import Vuex from 'vuex'
 //import createPersistedState from 'vuex-plugin-persistedstate'
 import createPersistedState from 'vuex-persistedstate'
 
-//Vue.use(Vuex)
 //arquivo de configuraçoes do vuex
 
 //disparamos a action, ela ativa a mutations que muda o state
