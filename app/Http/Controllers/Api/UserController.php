@@ -10,6 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    //userLogged
+    public function me(){
+        $userLogged = Auth::user();
+
+        return response()->json([
+                    'user' => $userLogged
+                ], Response::HTTP_OK);
+    }
+
     //listagem de usuarios
     public function index()
     {

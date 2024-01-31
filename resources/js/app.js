@@ -7,6 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 //import App from "@inertiajs/vue3/types/app.js";
 import moment from 'moment';
+import store from './store';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 //const appVue = createApp()
@@ -21,6 +22,8 @@ moment.locale('pt-br');
 //        }
 //    }
 //}
+
+store.dispatch('userStateAction');
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,

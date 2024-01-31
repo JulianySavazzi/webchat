@@ -19,7 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group([], function(){
+    Route::get('/user/me', [\App\Http\Controllers\Api\UserController::class, 'me'])->name('users.me');
     Route::get('/users', [\App\Http\Controllers\Api\UserController::class, 'index'])->name('users.index');
+
     Route::get('/messages/{user}', [\App\Http\Controllers\Api\MessageController::class, 'listMessages'])->name('messages.listMessages');
     Route::post('/messages/store', [\App\Http\Controllers\Api\MessageController::class, 'store'])->name('messages.store');
 });
