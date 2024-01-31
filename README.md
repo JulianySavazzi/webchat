@@ -15,6 +15,9 @@
 * Executar aplicação:
     - Iniciar http server no terminal dentro da pasta do projeto: php artisan serve
     - Iniciar o recarregamento automatico dos pacotes e alterações de codigo pelo node watch: npm run build --watch
+    - Iniciar o servidor de websockets: php artisan websockets:serve
+
+    - Acessar painel de controle dos websockets: localhost:8000/laravel-websockets 
 
 * Links úteis:
     - https://agenciadevalor.notion.site/agenciadevalor/C-digo-Aberto-Temporada-2-7d7234d105e846a8926cf63748a4b62c
