@@ -1,5 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
+import store from '@/store.js';
 </script>
 
 <template>
@@ -111,6 +112,12 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             }
         },
 
+        computed: {
+            user(){
+                return store.state.user
+            }
+        },
+
         methods:{
             scrollToBottom: function(){
                 if(this.messages.length){
@@ -135,7 +142,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
                 }).then(response => {
 
                     this.messages.push({
-                        'from': '1',
+                        'from': this.user.id,
                         'to': this.userActive,
                         'content': this.message,
                         'created_at': new Date().toISOString(),
@@ -155,7 +162,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             //essa funçao eh executada quando o componente eh montado
             axios.get('api/users').then(response => {
                 this.users = response.data.users
-                console.log(this.users);
+                //console.log(this.users);
             });
 
         }

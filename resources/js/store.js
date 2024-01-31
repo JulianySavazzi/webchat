@@ -13,11 +13,14 @@ export default new Vuex.Store({
             user: {}
         },
     mutations: {
-
+        setUserState: (state, value) => state.user = value
         },
     actions: {
         userStateAction: () => {
-            axios.get('api/user').then(response => {
+            axios.get('api/user/me').then(response => {
+                const userResponse = response.data.user
+                //o commit manda a açao para o mutation, usando o nome que ele foi declarado
+                commit('setUserState', userResponse)
                 console.log(response)
             })
             console.log('invoked')
