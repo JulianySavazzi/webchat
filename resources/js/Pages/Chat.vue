@@ -167,6 +167,13 @@ import store from '@/store.js';
                 //console.log(this.users);
             });
 
+            //se conectar ao canal privado do usuario selecionado
+            //o canal envia a notificaçao e ouve o evento
+            Echo.private(`user.${this.user.id}`).listen('.SendMessage', (content) => {
+                console.log(" message content ")
+                console.log(content)
+            } )
+
         }
     }
 </script>

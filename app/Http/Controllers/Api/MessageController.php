@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Events\Chat\SendMessage;
 use App\Models\Message;
 use App\Models\User;
+//use Illuminate\Console\Scheduling\Event;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,8 +59,13 @@ class MessageController extends Controller
         $message->from = Auth::user()->id;
         $message->to = $request->to;
         $message->content = filter_var($request->content, FILTER_SANITIZE_SPECIAL_CHARS);
+        //$message->content = filter_var($request->getContent(), FILTER_SANITIZE_SPECIAL_CHARS);
         $message->save();
-        //return response()->json("{$message->content}");
+
+        //disparar evento de mensagem para o usuario
+        Event::dispatch(new SendMessage($message, $message->to));
+
+        //return response()->json("{$message->to}.{$message->content}");
     }
 
     /**

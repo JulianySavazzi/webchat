@@ -35,9 +35,11 @@ window.Pusher = Pusher;
 //config by docs
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'your-pusher-key',
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-    wsHost: window.location.hostname,
+    key: 'myappkey',
+    //cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
+    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+    //wsHost: window.location.hostname,
     wsPort: 6001,
     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
     forceTLS: false,
