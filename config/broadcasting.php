@@ -43,7 +43,7 @@ return [
                 'port' => 6001,
                 //'scheme' => env('PUSHER_SCHEME', 'https'),
                 'scheme' => 'http',
-                'encrypted' => true,
+                'encrypted' => false,
                 'useTLS' => false
                 //'useTLS' => env('PUSHER_SCHEME', 'https') === 'https',
             ],

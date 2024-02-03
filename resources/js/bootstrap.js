@@ -20,29 +20,13 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 window.Pusher = Pusher;
 
-//default config
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: import.meta.env.VITE_PUSHER_APP_KEY,
-//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-//     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-//     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-//     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-//     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-//     enabledTransports: ['ws', 'wss'],
-// });
-
-//config by docs
 window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: 'myappkey',
-    //cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
-    wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-    //wsHost: window.location.hostname,
-    wsPort: 6001,
-    wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-    forceTLS: false,
-    disableStats: true,
-    enabledTransports: ['ws', 'wss'],
-});
+     broadcaster: 'pusher',
+     key: import.meta.env.VITE_PUSHER_APP_KEY,
+     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
+     wsHost: import.meta.env.VITE_PUSHER_HOST ? import.meta.env.VITE_PUSHER_HOST : `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
+     enabledTransports: ['ws', 'wss'],
+ });

@@ -128,7 +128,7 @@ import store from '@/store.js';
                     await axios.get(`api/messages/${user}`).then(response => {
                         this.messages = response.data.messages
                         this.userActive = user
-                        console.log(this.userActive);
+                        //console.log(this.userActive);
                     });
 
                     this.scrollToBottom()
@@ -173,7 +173,6 @@ import store from '@/store.js';
                 console.log(" message content ")
                 console.log(content)
             } )
-
         }
     }
 </script>
