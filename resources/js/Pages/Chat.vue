@@ -160,6 +160,10 @@ import store from '@/store.js';
             }
         },
 
+        sendNotification: async function(){
+            await axios
+        },
+
         mounted() {
             //essa funçao eh executada quando o componente eh montado
             //ver usuario logado
@@ -170,7 +174,7 @@ import store from '@/store.js';
             });
 
             //se conectar ao canal privado do usuario selecionado
-            //o canal envia a notificaçao e ouve o evento
+            //o canal envia a mensagem e ouve o evento
             Echo.private(`user.${this.user.id}`).listen('.SendMessage', async(content) => {
                 console.log(" message content ")
                 //se o usuario q recebeu a mensagem esta ativo, mostro a mensagem
