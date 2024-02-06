@@ -22,8 +22,7 @@
 
 * Anotações:
     - Criar model e migrations com laravel: php artisan make:model ModelName -m
-        -> Modelamos o BD na migrations;
-    - Criar o BD usando migrations: php artisan migrate
+    - Criar o BD usando migrations (modelagem do banco de dados): php artisan migrate
     - Criar controlers com metodos da api pelo lavarel: php artisan make:controller Api/ControllerName --api 
 
 * Links úteis:
