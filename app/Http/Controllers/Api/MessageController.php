@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Events\Chat\SendMessage;
 use App\Models\Message;
 use App\Models\User;
-//use Illuminate\Console\Scheduling\Event;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,7 +58,6 @@ class MessageController extends Controller
         $message->from = Auth::user()->id;
         $message->to = $request->to;
         $message->content = filter_var($request->content, FILTER_SANITIZE_SPECIAL_CHARS);
-        //$message->content = filter_var($request->getContent(), FILTER_SANITIZE_SPECIAL_CHARS);
         $message->save();
 
         //disparar evento de mensagem para o usuario

@@ -23,7 +23,8 @@
 * Anotações:
     - Criar model e migrations com laravel: php artisan make:model ModelName -m
         -> Modelamos o BD na migrations;
-    - Criar o BD: php artisan migrate
+    - Criar o BD usando migrations: php artisan migrate
+    - Criar controlers com metodos da api pelo lavarel: php artisan make:controller Api/ControllerName --api 
 
 * Links úteis:
     - https://agenciadevalor.notion.site/agenciadevalor/C-digo-Aberto-Temporada-2-7d7234d105e846a8926cf63748a4b62c

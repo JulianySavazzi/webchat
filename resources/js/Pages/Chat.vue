@@ -161,7 +161,15 @@ import store from '@/store.js';
         },
 
         sendNotification: async function(){
-            await axios
+            //salvar notificaçao no bd
+            await axios.post('api/notifications/store', {
+                'from': this.user.id,
+                'to': this.userActive,
+                'status': true,
+                'message': this.message.id
+            }).then(response => {
+                console.log(response)
+            })
         },
 
         mounted() {

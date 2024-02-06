@@ -24,4 +24,5 @@ Route::group([], function(){
 
     Route::get('/messages/{user}', [\App\Http\Controllers\Api\MessageController::class, 'listMessages'])->name('messages.listMessages');
     Route::post('/messages/store', [\App\Http\Controllers\Api\MessageController::class, 'store'])->name('messages.store');
+    Route::post('/notifications/store', [\App\Http\Controllers\Api\NotificationController::class, 'store'])->name('notifications.store');
 });
