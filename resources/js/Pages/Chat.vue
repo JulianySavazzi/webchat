@@ -1,6 +1,8 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import store from '@/store.js';
+//import * as Vue from 'vue';
+//import { reactive } from 'vue';
 </script>
 
 <template>
@@ -37,7 +39,7 @@ import store from '@/store.js';
 
                                 <p class="flex items-center">
                                     {{ user.name }}
-                                    <span class="ml-2 w-2 h-2
+                                    <span v-if="user.notification" class="ml-2 w-2 h-2
                                     bg-blue-500 rounded-full">
                                     </span>
                                 </p>
@@ -169,8 +171,40 @@ import store from '@/store.js';
 
             //se conectar ao canal privado do usuario selecionado
             //o canal envia a notificaçao e ouve o evento
-            Echo.private(`user.${this.user.id}`).listen('.SendMessage', (content) => {
+            Echo.private(`user.${this.user.id}`).listen('.SendMessage', async(content) => {
                 console.log(" message content ")
+                //se o usuario q recebeu a mensagem esta ativo, mostro a mensagem
+                //se nao, mostro uma notificaçao
+                if(this.userActive && this.userActive === content.message.from){
+                    await this.messages.push(content.message)
+                    this.scrollToBottom()
+                } else {
+                    //user in users
+                    //const userNotificated = this.users.filter((user) => {
+                    const user = this.users.filter(async (user) => {
+                        if(user.id === content.message.from) {
+                            return await user
+                        }
+//                        } else {
+//                            return null
+//                        }
+                    })
+
+                    //if(userNotificated != null){
+                    //if(user != null){
+                    if(user){
+                        //reactive(new Map([[user[0], 'notification', true]]))
+                        //this.users(user.notification = true)
+                        this.user['notification'] = true
+                        console.log(user['notification'])
+                    }
+//                    } else {
+//                        //ref(user[0], 'notification', false)
+//                        //this.users(user.notification = false)
+//                        user['notification'] = false
+//                        console.log(user['notification'])
+//                    }
+                }
                 console.log(content)
             } )
         }
