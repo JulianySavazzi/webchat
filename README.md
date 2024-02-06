@@ -6,7 +6,7 @@
 * Tecnologias utilizadas:
     - PHP
     - Node
-    - Vue
+    - Vue3
     - Vuex
     - Laravel
     - Jetstream
@@ -14,6 +14,12 @@
     - Maria DB
 
 * Executar aplicação:
+     * Foram utilizadas as seguintes versões:
+        - XAMPP 8.2.4 Rev. 0
+        - PHP v8.2.4
+        - Node.js v20.10.0
+        - Laravel Framework 10.43.0
+
     - Iniciar http server pelo laravel no terminal dentro da pasta do projeto: php artisan serve
     - Iniciar o recarregamento automatico dos pacotes e alterações de codigo pelo node watch: npm run build --watch
     - Iniciar o servidor de websockets: php artisan websockets:serve
